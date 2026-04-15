@@ -20,4 +20,28 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: ${{ secrets.DOCKER_USERNAME }}/gitopssulavan
           tags: ${{ github.sha }}, latest
-        
+
+      - name: Setup Kustomize
+        uses: imranismail/setup-kustomize@v1
+        with:
+          kustomize-version: '3.8.7'
+
+      - name: Update Kubernetes resorces
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        run: |
+          cd k8s
+          kustomize edit set image goserver=${DOCKER_USERNAME}/gitopssulavan:${GITHUB_SHA}
+
+      - name: Commit 
+        run: |
+          git config --local user.email "github-actions@github.com"
+          git config --local user.name "github-actions"
+          git commit -am "Bump docker version"
+          
+      - name: Push
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ivanaugustineli/gitopssulavan
+         
