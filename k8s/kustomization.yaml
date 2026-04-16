@@ -6,4 +6,4 @@ resources:
 images:
 - name: goserver
   newName: ivanaugustineli/gitopssulavan
-  newTag: novatag
+  newTag: 0336f4843819f8aa6e97df66800f1cbd1b03f548
