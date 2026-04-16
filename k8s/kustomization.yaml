@@ -1,9 +1,11 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+
 resources:
-- service.yaml
-- deployment.yaml
+  - service.yaml
+  - deployment.yaml
+
 images:
-- name: goserver
-  newName: ivanaugustineli/gitopssulavan
-  newTag: aa6e91aab445aaa9d6f973f021754c96705c6b5c
+  - name: goserver
+    newName: ivanaugustineli/gitopssulavan
+    newTag: novatag
