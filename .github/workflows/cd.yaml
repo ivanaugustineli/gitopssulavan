@@ -35,13 +35,13 @@ jobs:
 
       - name: Commit 
         run: |
-          git config --local user.email "github-actions@github.com"
-          git config --local user.name "github-actions"
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
           git commit -am "Bump docker version"
           
       - name: Push
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${DOCKER_USERNAME}/gitopssulavan
+          repository: ivanaugustineli/gitopssulavan
          
